@@ -1,15 +1,17 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
+import { TodoContent } from "../../store/TodoContext";
 import Button from "../IU/Button";
 
-export const TodoList = ({ title, dispatch, item, setInputText }) => {
+export const TodoList = ({ title, item}) => {
+  const {dispatch,setInputText} = useContext(TodoContent)
   const HandlerDelete = () => {
     dispatch({ type: "deleteTodo", payload: item.id });
   };
 
   const comp = (id) => {
-    dispatch({ type: "chek", payload: id });
-  };
+  dispatch({ type: "chek", payload: id });
+  };                                                      
 
   const edit = (title, id) => {
     setInputText(title);

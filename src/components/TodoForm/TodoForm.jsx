@@ -1,18 +1,18 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
+import { TodoContent } from "../../store/TodoContext";
 import { TodoList } from "../TodoList/TodoList";
 
-export const TodoForm = ({ todo, dispatch, setInputText }) => {
+export const TodoForm = () => {
+  const {state}=useContext(TodoContent)
   return (
     <Conteiner>
-      {todo.map((item) => {
+      {state.map((item) => {
         return (
           <TodoList
             item={item}
             key={item.id}
             title={item.title}
-            dispatch={dispatch}
-            setInputText={setInputText}
           />
         );
       })}

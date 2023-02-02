@@ -1,35 +1,26 @@
-import React, { useEffect, useReducer, useState } from "react";
 import { Main } from "./components/Main/Main";
-import reducer from "./components/Reducer";
 import { TodoForm } from "./components/TodoForm/TodoForm";
 import styled from "styled-components";
+import { TodoContentProvider } from "./store/TodoContext";
 
 export const App = () => {
-  const [state, dispatch] = useReducer(
-    reducer,
-    JSON.parse(localStorage.getItem("TODO")) || []
-  );
-  const [inputText, setInputText] = useState("");
+  // const [state, dispatch] = useReducer(
+  //   reducer,
+  //   JSON.parse(localStorage.getItem("TODO")) || []
+  // );
+  // const [inputText, setInputText] = useState("");
 
-  useEffect(() => {
-    localStorage.setItem("TODO", JSON.stringify(state));
-  }, [state]);
+  // useEffect(() => {
+  //   localStorage.setItem("TODO", JSON.stringify(state));
+  // }, [state]);
 
   return (
-    <>
+    <TodoContentProvider>
       <StyledContainer>
-        <Main
-          inputText={inputText}
-          setInputText={setInputText}
-          dispatch={dispatch}
-        />
-        <TodoForm
-          dispatch={dispatch}
-          todo={state}
-          setInputText={setInputText}
-        />
+        <Main />
+        <TodoForm />
       </StyledContainer>
-    </>
+    </TodoContentProvider>
   );
 };
 
